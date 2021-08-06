@@ -1,4 +1,5 @@
 ﻿using System;
+using ClassLibrary1;
 
 namespace Project1
 {
@@ -6,7 +7,9 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Calc x = new Calc();
+            x.greet();
+            Console.WriteLine(x.add(2, 6));
         }
     }
 }

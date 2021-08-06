@@ -1,1 +1,5 @@
 ﻿C# text
+//casting a double db to an int counter;
+counter = (int) db;
+//convert a string a to an int counter
+counter = Convert.ToInt32(a);
