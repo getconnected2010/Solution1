@@ -1,13 +1,74 @@
 ﻿C# text
 //importing namespaces to access the classes within
 using nameSpaceName;
+
+
+##concepts
+Stack and Heap =>
+- stack and heap are memory allocations in RAM for program.
+- they store variables and objects as long as they are within scope i.e. {...}
+- primitive types and pointers to objects in memory are stored in Stack.
+  - stack is like a bucket and gets filled with variables one on top of the other.
+  - stack works as last in first out LIFO
+- Objects are strored in Heap.
+
+- once the variables and obj are out of scope, they are deleted and momory given back to OS.
+  - stack deletes starting from top LIFO all variables and pointers out of scope.
+  - garbage collector deletes all objects in heap that don't have pointers in stack.
+    - no pointers in heap means pointers in stack are deleted when out of scope.
+    - garbage collector has its own random timing to clear the heap but stack immediate.
+
+Value types and reference types
+- primitives are passed by value hence value types. int x=3; int y=x;
+- custom types such as objects are passed by ref hence reference types. 
+    - Student x = new Student(); x = y; ...y will reference same obj
+
+Boxing and unboxing
+- Boxing - assigning a value type of variable to a reference type of variable.
+  - converting stack to heap. int x = 0; object y=x; primitive to object.
+- Unboxing - assigning a reference type variable to a value type of variable.
+  - converting heap to stack. object y; int x = (int)y; object to primitive.
+- bosing and unboxing is CPU intensive task. Avoid.
+
+#VS functionalities
 //monitor a variable or change on runtime
 right click => add watch
+//memory address location of variables
+in add watch, place amber sign next to variable name &x
 
 
 //casting a double db to an int counter;
 counter = (int) db;
+//primitives are passed by value. custom types such as objects are passed by ref.
+int i= 9;
+int y= i; passed by value
+MyClass x = new MyClass();
+x.someProperty = 3;
+x = z;  passed by reference. x and z are pointers to same object in heap
+z.someProperty = 4;   this will change original value.
 //convert a string a to an int counter
 counter = Convert.ToInt32(a);
 //current time
 return DateTime.Now.ToString();
+//struct. These are value types. Not reference type like class.
+    public struct myStruct
+    {
+        public int a;
+        int b;
+        public void hi()
+        {
+            Console.WriteLine("hello in struct");
+        }
+    }
+    //access it by creating an instance
+    myStruct abc = new myStruct();
+    abc.a = 2;
+    abc.hi();
+
+
+
+
+
+
+
+
