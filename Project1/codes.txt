@@ -1,6 +1,8 @@
 ﻿C# text
 //importing namespaces to access the classes within
 using nameSpaceName;
+using System.Collections;
+using System.Collections.Generic;
 
 
 ##concepts
@@ -29,6 +31,17 @@ Boxing and unboxing
 - Unboxing - assigning a reference type variable to a value type of variable.
   - converting heap to stack. object y; int x = (int)y; object to primitive.
 - bosing and unboxing is CPU intensive task. Avoid.
+
+Collections
+- Arrays are strongly typed so there is no boxing and unboxing.
+  - They are good for large amount of data because they operate fast
+- ArrayList are not typed. Can store all types. Each is stored as heap.
+  - Boxing and unboxing happens for each element thus slow for large data.
+  - using System.Collections;
+- Generic list are typed. They are flexible like arrayList but fast like array.
+  - No boxing and unboxing.
+  - List<int> genListArr = new List<int>();
+  - using System.Collections.Generic;
 
 #VS functionalities
 //monitor a variable or change on runtime
@@ -64,6 +77,53 @@ return DateTime.Now.ToString();
     myStruct abc = new myStruct();
     abc.a = 2;
     abc.hi();
+
+//arrays (strongly typed, no boxing and unboxing, fast operation)
+//using System.Collections;
+int[] arrInt = new int[13];
+string[] arrStr = new string[2];
+arrInt[0] = 4;
+arrStr[0] = "eden";
+
+//arraylists (not typed, boxing and unboxing, slow performance)
+//using System.Collections;
+ArrayList arrList = new ArrayList();
+arrList.Add(2);
+arrList.Add("eden");
+
+//generic list (typed, no boxing and unboxing, fast performance)
+//using System.Collections.Generic;
+List<int> genIntList = new List<int>();
+genIntList.Add(1);
+genIntList.Add(5);
+
+List<string> genStrList = new List<string>();
+genStrList.Add("eden");
+genStrList.Add("daddy");
+
+//for loop
+for(int i=0; i<10; i++)
+{
+     Console.WriteLine(i);
+}
+//foreach loop
+foreach(string item in genStrList)
+{
+    Console.WriteLine(item);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
