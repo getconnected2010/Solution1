@@ -4,6 +4,9 @@ using nameSpaceName;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading; //for Thread.sleep(1000)
+System.Threading.Task;
+using System.IO;   //for files
+using System.Linq;  //for sql querries.
 
 
 ##concepts
@@ -53,6 +56,8 @@ in add watch, place amber sign next to variable name &x
 
 //casting a double db to an int counter;
 counter = (int) db;
+//declaring constants
+public const int PI
 //primitives are passed by value. custom types such as objects are passed by ref.
 int i= 9;
 int y= i; passed by value
@@ -133,11 +138,84 @@ try
 //sleep function takes miliseconds. import using System.Threading; at the top
 Thread.sleep(1000);
 
+//Threading and Task Will need System.Threading; or System.Threading.Task; import
+    //t1 and t2 will execute in parallel. "Hello World" will also print without waiting for t1 and t2
+    Thread t1 = new Thread(new ThreadStart(firstThread));
+    Thread t2 = new Thread(new ThreadStart(secondThread));
+    or
+    Task t1 = new Task(firstThread);  //import System.Threading.Task;
+    Task t2 = new Task(secondThread);  //Task doesn't have thread affinity
+    //to run the threads
+    t1.Start();
+    t2.Start();
+    Console.WriteLine("Hello World!");
 
+    //the methods for the above parallel threads
+    static void firstThread()
+    {
+         for (int i = 0; i < 10; i++)
+         {
+             Console.WriteLine("First Thread " + i);
+             Thread.Sleep(1000);
+             Task.Delay(2000);  //if using the Task t1
+         }
+     }
+     static void secondThread()
+     {
+         for (int i = 0; i < 10; i++)
+         {
+             Console.WriteLine("Second Thread " + i);
+             Thread.Sleep(1000);
+             Task.Delay(2000);  //if using the Task t1
+         }
+     }
+    }
 
+//async and await ???????????????????????????????????????????????????????????????????????????????????//
+    static async void firstThread()
+    {
+        for (int i = 0; i < 10; i++)
+    {
+        await Task.Delay(2000);
+        Console.WriteLine("First Thread " + i);
+       }
+    }
 
+//Files. using System.IO; 
+    //creates a data.txt file and writes "hello world" in it. If the file already exists, it will overwrite it.
+    File.WriteAllText(@"C:\Users\haile\OneDrive\Documents\projects\C#\data.txt", "Hello world"); 
+    //reads from a file data.txt
+    string fileInput = File.ReadAllText(@"C:\Users\haile\OneDrive\Documents\projects\C#\data.txt");
+    Console.WriteLine(fileInput);
 
-
+//Linq SQL
+    static void Main(string[] args)
+    {
+      List<Customer> customerList = new List<Customer>();
+      customerList.Add(new Customer("eden", "springfield"));
+      customerList.Add(new Customer("daddy", "springfield"));
+      customerList.Add(new Customer("mommy", "woodbridge"));
+      //the sql querry to get the data 
+      var sqlQuery = (from temp in customerList where temp.city == "springfield" && temp.name=="eden" orderby temp.age select temp);
+      foreach (var item in sqlQuery)
+      {
+          Console.WriteLine(item.name);
+      }
+      
+//enum
+    //enum is declared inside the namespace outside the class
+    enum CustomErrors
+    {
+        FileNotFound = 1003,
+        AccessDenied = 1993,
+        Unkown = 2889
+    }
+    //access the enum values inside a method
+    CustomErrors x = (CustomErrors) Convert.ToInt32(Console.ReadLine());
+    if(x == CustomErrors.Unkown)
+    {
+        Console.WriteLine("Unknw");
+    }
 
 
 
