@@ -1,5 +1,6 @@
 ﻿using System;
 using ClassLibrary1;
+using System.Threading;
 
 namespace Project2
 {
@@ -28,8 +29,10 @@ namespace Project2
             counter++;
             for(int i=0; i<10; i++)
             {
+                Thread.Sleep(1000);
                 Console.WriteLine(i);
             }
+            
             Console.WriteLine(counter);
             Class1 x = new Class1();
             Console.WriteLine("Hello World 2 !"+ x.getDateTime());
