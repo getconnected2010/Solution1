@@ -7,6 +7,7 @@ using System.Threading; //for Thread.sleep(1000)
 System.Threading.Task;
 using System.IO;   //for files
 using System.Linq;  //for sql querries.
+using static System.Console;  //to eliminate writing console
 
 
 ##concepts
@@ -67,6 +68,8 @@ x = z;  passed by reference. x and z are pointers to same object in heap
 z.someProperty = 4;   this will change original value.
 //convert a string a to an int counter
 counter = Convert.ToInt32(a);
+//convert to lowercase
+x.Tolower();
 //current time
 return DateTime.Now.ToString();
 //write to the console
@@ -74,6 +77,9 @@ Console.WriteLine("eden");
 //read from the console
 String input = Console.ReadLine();
 Console.WriteLine("your input "+ input);
+//writing to console with a variable
+int x = 32;
+WriteLine($"Hello World! {x}");
 //struct. These are value types. Not reference type like class.
     public struct myStruct
     {
@@ -106,7 +112,9 @@ arrList.Add("eden");
 //using System.Collections.Generic;
 List<int> genIntList = new List<int>();
 genIntList.Add(1);
-genIntList.Add(5);
+genIntList.Add(5);.
+genIntLIst.insert(index, item);
+genIntList.RemoveAt(index);
 
 List<string> genStrList = new List<string>();
 genStrList.Add("eden");
@@ -217,7 +225,47 @@ Thread.sleep(1000);
         Console.WriteLine("Unknw");
     }
 
+//Properties
+   //name can be read but set is private.
+   public string name { get; private set; } 
+   //id can be read but can't be set at all
+   public int id { get;}
+   //fat arrow fn that returns the name and Id together for get of nameId
+   public string nameId {
+       get => $"{name} {id}";
+   }
+   //private _age field
+   private int _age;
+   //applies logic to set and get _age field using age property
+   public int age {
+       get 
+      {
+          WriteLine("someone is reading age property");
+          return _age;
+      }
+      set
+     {
+        if (value < 0)
+        {
+              WriteLine("age can't be below zero");
+              value = 0;
+        }
+           _age = value;
+       }
+   }  
 
+//Inheritance
+   //set the properties in the parent as protected
+   //create a constructor in the parent
+   public ParentConstructor(String name, int age)
+   //create the derived class and indicate inheritance
+   class ChildClassName : ParentClassName
+   //create child constructor
+   public ChildConstructor(String name, int age, boolean fast)
+        : base(name, age)     //this will send the params to the parent class
+        {
+            this.fast = fast;
+        }
 
 
 
